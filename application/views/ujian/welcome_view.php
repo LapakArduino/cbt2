@@ -18,7 +18,7 @@
     	</div>
     	<div class="row">
     		<div class="login-box ">
-    <p class="login-box-msg">Rex-CBT</p>
+    <!-- <p class="login-box-msg">Rex-CBT</p> -->
     			<div class="login-logo">
 <!-- <img href="<?php echo base_url(); ?>public/images/skawan.png" /> -->
 
