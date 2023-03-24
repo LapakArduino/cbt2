@@ -41,7 +41,7 @@
     						<div class="box-title">Daftar Topik</div>
     						<div class="box-tools pull-right">
     							<div class="dropdown pull-right">
-    								<a style="cursor: pointer;" onclick="tambah()">Tambah Topik</a>
+    								<a style="cursor: pointer;" onclick="tambah()">Tambah Topik (Ujian)</a>
     							</div>
     						</div>
                     </div><!-- /.box-header -->
@@ -72,8 +72,8 @@
                                     <td> </td>
                                 </tr>
                             </tbody>
-                        </table> 
-                        </form>                       
+                        </table>
+                        </form>
                     </div>
                     <div class="box-footer">
                         <button type="button" id="btn-edit-hapus" class="btn btn-primary" title="Hapus Siswa yang dipilih">Hapus</button>
@@ -218,7 +218,7 @@
                 $('#edit-topik-asli').val(data.topik);
                 $('#edit-deskripsi').val(data.deskripsi);
 				$('#edit-modul-id').val('');
-                
+
                 $("#modal-edit").modal("show");
             }
             $("#modal-proses").modal('hide');
@@ -335,7 +335,7 @@
                   "paging": true,
                   "iDisplayLength":10,
                   "bProcessing": false,
-                  "bServerSide": true, 
+                  "bServerSide": true,
                   "searching": true,
                   "aoColumns": [
     					{"bSearchable": false, "bSortable": false, "sWidth":"20px"},
@@ -351,6 +351,6 @@
                   "fnServerParams": function ( aoData ) {
                     aoData.push( { "name": "modul", "value": $('#modul').val()} );
                   }
-         });          
+         });
     });
 </script>

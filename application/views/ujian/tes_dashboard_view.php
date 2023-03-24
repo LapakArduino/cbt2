@@ -1,10 +1,12 @@
 <div class="container">
 	<!-- Content Header (Page header) -->
     <section class="content-header">
-    	<h1>
-    		SELAMAT DATANG <?php if(!empty($nama)){ echo $nama; } if(!empty($group)){ echo ' | '.$group; } ?>
-            <small>di Ujian Online Berbasis Komputer</small>
-        </h1>
+    	<h4>
+    		<section class="bg-primary"> SELAMAT DATANG </section>
+            <?php if(!empty($nama)){ echo $nama; } if(!empty($group)){ echo ' | '.$group; } ?>
+            <section> <small>di Platform Online pak Eko</small>
+</section>
+        </h4>
         <ol class="breadcrumb">
         	<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">dashboard</li>
@@ -12,13 +14,16 @@
 	</section>
 
 	<!-- Main content -->
+    <div class="container">
+
+</div>
     <section class="content">
 		<?php
 			if(!empty($informasi)){
 				?>
 				<div class="callout callout-info">
                     <h4>Informasi</h4>
-                    <?php 
+                    <?php
 					echo $informasi
 					?>
                 </div>
@@ -32,6 +37,36 @@
 				<?php
 			}
 		?>
+<?php echo site_url().'/'.$url; ?>/get_datatable/
+<!-- materi ku -->
+    <div class="box box-success box-solid">
+            <div class="box-header with-border">
+                <h3 class="box-title">Daftar Materi</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <table id="table-materi" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th class="all">Materi</th>
+                            <th>Guru Pengampu</th>
+                            <th>Status</th>
+                            <th class="all">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+<!-- soal -->
         <div class="box box-success box-solid">
             <div class="box-header with-border">
                 <h3 class="box-title">Daftar Tes</h3>
@@ -58,7 +93,7 @@
                             <td> </td>
                         </tr>
                     </tbody>
-                </table>   
+                </table>
             </div><!-- /.box-body -->
         </div><!-- /.box -->
     </section><!-- /.content -->
@@ -70,7 +105,7 @@
                   "paging": true,
                   "iDisplayLength":25,
                   "bProcessing": false,
-                  "bServerSide": true, 
+                  "bServerSide": true,
                   "searching": false,
                   "aoColumns": [
                         {"bSearchable": false, "bSortable": false, "sWidth":"20px"},
@@ -82,6 +117,25 @@
                   "sAjaxSource": "<?php echo site_url().'/'.$url; ?>/get_datatable/",
                   "autoWidth": false,
                   "responsive": true
-         });   
+         });
+    });
+    $(function () {
+        $('#table-materi').DataTable({
+                  "paging": true,
+                  "iDisplayLength":25,
+                  "bProcessing": false,
+                  "bServerSide": true,
+                  "searching": false,
+                  "aoColumns": [
+                        {"bSearchable": false, "bSortable": false, "sWidth":"20px"},
+                        {"bSearchable": false, "bSortable": false},
+                        {"bSearchable": false, "bSortable": false, "sWidth":"150px"},
+                        {"bSearchable": false, "bSortable": false, "sWidth":"150px"},
+                        {"bSearchable": false, "bSortable": false, "sWidth":"100px"},
+                        {"bSearchable": false, "bSortable": false, "sWidth":"30px"}],
+                  "sAjaxSource": "<?php echo site_url().'/'.$url; ?>/get_materi/",
+                  "autoWidth": false,
+                  "responsive": true
+         });
     });
 </script>

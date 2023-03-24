@@ -43,8 +43,8 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
-    
+
+
     <!-- jQuery 2.1.4 -->
     <script src="<?php echo base_url(); ?>public/plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.2 JS -->
@@ -57,7 +57,7 @@
     <script src="<?php echo base_url(); ?>public/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
     <!-- SlimScroll 1.3.0 -->
     <script src="<?php echo base_url(); ?>public/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-	
+
 	 <!-- ChartJS 1.0.1 -->
     <script src="<?php echo base_url(); ?>public/app.js" type="text/javascript"></script>
 
@@ -70,7 +70,7 @@
     <script src="<?php echo base_url(); ?>public/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="<?php echo base_url(); ?>public/plugins/adminlte/js/demo.js" type="text/javascript"></script>
-    
+
     <!-- summernote dimatikan
     <script src="<?php echo base_url(); ?>public/plugins/summernote/summernote.js" type="text/javascript"></script>
     -->
@@ -83,7 +83,7 @@
 
     <!-- ckeditor -->
     <script src="<?php echo base_url(); ?>public/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
-    
+
     <!-- select2 -->
     <script src="<?php echo base_url(); ?>public/plugins/select2-4.0.5/js/select2.min.js" type="text/javascript"></script>
 
@@ -106,7 +106,7 @@
 				delay:4000
 			});
 		}
-        
+
         function notify_info(pesan){
 			new PNotify({
 				title: 'Informasi',
@@ -116,7 +116,7 @@
 				delay:2000
 			});
 		}
-    
+
 		function notify_error(pesan){
 			new PNotify({
 				title: 'Error',
@@ -125,7 +125,7 @@
 				history: false,
 				delay:2000
 			});
-		} 
+		}
   </script>
   </head>
   <body class="skin-green sidebar-mini">
@@ -138,7 +138,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>CBT</b></span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>ZYA CBT</b></span>
+          <span class="logo-lg"><b>PAK EKO</b></span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -196,18 +196,18 @@
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
-          
+
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
 			<li><a href="<?php echo site_url(); ?>/manager"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-            
-            <?php 
+
+            <?php
             if(!empty($sidemenu)){
                 echo $sidemenu;
             }
             ?>
-            
+
           </ul>
         </section>
         <!-- /.sidebar -->
@@ -215,7 +215,7 @@
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
-		<?php 
+		<?php
 			if(!empty($content)){
 				echo $content;
 			}
@@ -226,11 +226,11 @@
         <div class="pull-right hidden-xs">
           <b>Version</b> <?php if(!empty($site_version)){ echo $site_version; } ?>
         </div>
-        <strong>&copy; 2020 achmadlutfi.wordpress.com</strong>
+        <strong>&copy; 2020 achmadlutfi rev. by Lapak Arduino</strong>
       </footer>
 
     </div><!-- ./wrapper -->
-	
+
 	<div class="modal" id="modal-password" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -256,7 +256,7 @@
                                     <input type="password" class="form-control" id="password-confirm" name="password-confirm" placeholder="Confirm Password">
                                 </div>
                             </div>
-                        <?php echo form_close(); ?>   
+                        <?php echo form_close(); ?>
 				</div>
 				<div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -265,13 +265,13 @@
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-    
+
     <div class="modal" id="modal-proses" data-backdrop="static">
   		<div class="modal-dialog">
   			<div class="modal-content">
   				<div class="modal-body">
             <div style="text-align: center;">
-              <img width="50" src="<?php echo base_url(); ?>public/images/loading.gif" /> <br />Data Sedang diproses...              
+              <img width="50" src="<?php echo base_url(); ?>public/images/loading.gif" /> <br />Data Sedang diproses...
             </div>
             <br />
             Catatan : Refresh Halaman jika proses terlalu Lama.
@@ -279,10 +279,10 @@
   			</div><!-- /.modal-content -->
   		</div><!-- /.modal-dialog -->
   	</div><!-- /.modal -->
-	
+
 	<script>
     $(function () {
-                        
+
       //Form Ubah Password
 			$('#modal-password').on('shown.bs.modal', function (e) {
 				$('#form-pesan-password').html('');
@@ -291,12 +291,12 @@
 				$('#password-confirm').val('');
 				$('#password-old').focus();
 			});
-			
+
 			$('#password-submit').click(function(){
         $('#form-password').submit();
 			});
-			
-			$('#form-password').submit(function(){        
+
+			$('#form-password').submit(function(){
         $.ajax({
           url:"<?php echo site_url(); ?>/manager/dashboard/password",
           type:"POST",

@@ -85,7 +85,7 @@
 			?>
         </div>
         <div class="container">
-          <strong>&copy; 2020 achmadlutfi, disempurnakan oleh Lapak Arduino 💌 </strong>
+          <strong>&copy; 2020 achmadlutfi </strong>
         </div><!-- /.container -->
       </footer>
     </div><!-- ./wrapper -->
