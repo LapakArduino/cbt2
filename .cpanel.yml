@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/kangekom/cbt2_github/
+    - export DEPLOYPATH=/home/kangekom/laravel/
     -/bin/cp -R .vscode $DEPLOYPATH
     -/bin/cp -R assets $DEPLOYPATH
     -/bin/cp -R css $DEPLOYPATH
