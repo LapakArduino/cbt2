@@ -12,11 +12,11 @@
     <div class="callout callout-info">
         <h4>Informasi</h4>
         <p>
-            Selamat datang di Halaman Login Aplikasi Computer Based-Test. Untuk memulai silahkan melakukan
+            Selamat datang di Halaman Login Aplikasi Computer Based-Test. Untuk memulai silahkan melakukan 
             proses Login dengan menggunakan username dan password yang sudah dimiliki.
         </p>
     </div>
-
+    
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
@@ -30,7 +30,7 @@
                     <div class="box-body">
 						<div id="form-pesan">
 						</div>
-
+						
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Username</label>
                             <div class="col-sm-8">
@@ -52,7 +52,6 @@
         <div class="col-md-3"></div>
     </div>
 </section><!-- /.content -->
-ini login anak
 </div>
 
     <div class="modal" id="modal-proses" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -67,12 +66,12 @@ ini login anak
 
 <script type="text/javascript">
     $(function () {
-        $('#username').focus();
-
+        $('#username').focus();   
+        
         $('#btn-login').click(function(){
             $('#form-login').submit();
         });
-
+        
         $('#form-login').submit(function(){
             $("#modal-proses").modal('show');
                 $.ajax({
@@ -90,8 +89,8 @@ ini login anak
           		        }
          			}
       		});
-
+            
       		return false;
-        });
+        });    
     });
 </script>

@@ -57,7 +57,9 @@
 			$data['site_version']=$this->_ci->config->item('site_version');
 			$data['content']=$this->_ci->load->view($template,$data,true);
 			$data['title']=$title;
+			// $this->_ci->load->view('template/template_tes.php',$data);
 			$this->_ci->load->view('template/footer_tes.php',$data);
+
 		}
 
 		function display_clean($template, $data=null){

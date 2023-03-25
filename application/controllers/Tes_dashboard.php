@@ -8,7 +8,7 @@
 class Tes_dashboard extends Tes_Controller {
 	private $kelompok = 'ujian';
 	private $url = 'tes_dashboard';
-
+	
     function __construct(){
 		parent:: __construct();
 		$this->load->model('cbt_user_model');
@@ -23,7 +23,7 @@ class Tes_dashboard extends Tes_Controller {
 		$this->load->model('cbt_tes_soal_model');
 		$this->load->model('cbt_tes_soal_jawaban_model');
 	}
-
+    
     public function index(){
         $this->load->helper('form');
         $data['nama'] = $this->access_tes->get_nama();
@@ -51,7 +51,7 @@ class Tes_dashboard extends Tes_Controller {
 				}
 			}
 		}
-
+		
 		$query_info = $this->cbt_konfigurasi_model->get_by_kolom_limit('konfigurasi_kode', 'cbt_informasi', 1);
 		if($query_info->num_rows()>0){
 			$query_info = $query_info->row();
@@ -104,15 +104,15 @@ class Tes_dashboard extends Tes_Controller {
 				        }
 
 				        if($data['tes_max_score']>0){
-				        	$this->template->display_tes($this->kelompok.'/tes_start_view', 'Mulai Tes', $data);
+				        	$this->template->display_tes($this->kelompok.'/tes_start_view', 'Mulai Tes', $data);	
 				        }else{
 				        	redirect('tes_dashboard');
 				        }
 		            }else{
-		            	redirect('tes_dashboard');
+		            	redirect('tes_dashboard');	
 		            }
     			}else{
-    				redirect('tes_dashboard');
+    				redirect('tes_dashboard');	
     			}
     		}else{
     			redirect('tes_dashboard');
@@ -131,13 +131,13 @@ class Tes_dashboard extends Tes_Controller {
      */
     function mulai_tes(){
     	$this->load->library('form_validation');
-
+        
 		$this->form_validation->set_rules('tes-id', 'Tes','required|strip_tags');
-
+        
         if($this->form_validation->run() == TRUE){
 			$tes_id = $this->input->post('tes-id', TRUE);
 			$token = $this->input->post('token', TRUE);
-
+			
 			$username = $this->access_tes->get_username();
 			$user_id = $this->cbt_user_model->get_by_kolom_limit('user_name', $username, 1)->row()->user_id;
 
@@ -156,7 +156,7 @@ class Tes_dashboard extends Tes_Controller {
 							$query_token = $this->cbt_tes_token_model->get_by_token_now_limit($token, 1);
 							if($query_token->num_rows()>0){
 								$query_token = $query_token->row();
-
+								
 								// Mengecek token apakah dapat digunakan oleh semua TES
 								if($query_token->token_tes_id==0){
 									// Jika token dapat digunakan oleh semua TES
@@ -184,7 +184,7 @@ class Tes_dashboard extends Tes_Controller {
 											}
 										}
 									}else{
-										$is_ok = 0;
+										$is_ok = 0;									
 									}
 								}
 							}else{
@@ -236,12 +236,12 @@ class Tes_dashboard extends Tes_Controller {
 									// menggunakan batch query langsung untuk mengehemat waktu dan memory
 									$this->cbt_tes_soal_model->save_batch($insert_soal);
 
-									// Mengambil data soal pada test_log
+									// Mengambil data soal pada test_log 
 									$query_test_log = $this->cbt_tes_soal_model->get_by_testuser_select($tests_users_id, $subject_set->tset_topik_id, 'tessoal_id, soal_id, soal_tipe')->result();
 									foreach ($query_test_log as $test_log) {
 										// Jika tipe soal pilihan ganda
 										if($test_log->soal_tipe==1){
-											// Jika jawaban diacak
+											// Jika jawaban diacak 
 											if($subject_set->tset_acak_jawaban==1){
 												// mendapatkan jawaban dari soal yang ada dengan diacak terlebih dahulu
 												$query_jawaban = $this->cbt_jawaban_model->get_by_soal_limit($test_log->soal_id, $subject_set->tset_jawaban);
@@ -313,7 +313,7 @@ class Tes_dashboard extends Tes_Controller {
             $status['status'] = 0;
             $status['pesan'] = validation_errors();
         }
-
+        
         echo json_encode($status);
     }
 
@@ -323,18 +323,18 @@ class Tes_dashboard extends Tes_Controller {
 	 */
 	function password(){
         $this->load->library('form_validation');
-
+        
 		$this->form_validation->set_rules('password-old', 'Password Lama','required|strip_tags');
 		$this->form_validation->set_rules('password-new', 'Password Baru','required|strip_tags');
         $this->form_validation->set_rules('password-confirm', 'Confirm Password','required|strip_tags');
-
+        
         if($this->form_validation->run() == TRUE){
 			$old = $this->input->post('password-old', TRUE);
 			$new = $this->input->post('password-new', TRUE);
 			$confirm = $this->input->post('password-confirm', TRUE);
-
+			
 			$username = $this->access_tes->get_username();
-
+			
 			if($this->cbt_user_model->count_by_username_password($username, $old)>0){
 				if($new==$confirm){
 					$data['user_password'] = $new;
@@ -354,7 +354,7 @@ class Tes_dashboard extends Tes_Controller {
             $status['status'] = 0;
             $status['error'] = validation_errors();
         }
-
+        
         echo json_encode($status);
     }
 
@@ -373,7 +373,7 @@ class Tes_dashboard extends Tes_Controller {
 		if($query_grup->num_rows()>0){
 			$grup_id = $query_grup->row()->grup_id;
 		}
-
+		
 		$username = $this->access_tes->get_username();
 		$query_user = $this->cbt_user_model->get_by_kolom_limit('user_name', $username, 1);
 		$user_id = 0;
@@ -393,9 +393,9 @@ class Tes_dashboard extends Tes_Controller {
 		// run query to get user listing
 		$query = $this->cbt_tesgrup_model->get_datatable($start, $rows, $grup_id);
 		$iFilteredTotal = $query->num_rows();
-
+		
 		$iTotal= $this->cbt_tesgrup_model->get_datatable_count($grup_id)->row()->hasil;
-
+	    
 		$output = array(
 			"sEcho" => intval($_GET['sEcho']),
 	        "iTotalRecords" => $iTotal,
@@ -406,7 +406,7 @@ class Tes_dashboard extends Tes_Controller {
 	    // get result after running query and put it in array
 		$i=$start;
 		$query = $query->result();
-	    foreach ($query as $temp) {
+	    foreach ($query as $temp) {			
 			$record = array();
 
 			// Cek apakah tes yang terdaftar pada group memiliki soal sesuai topik yang ada
@@ -454,16 +454,16 @@ class Tes_dashboard extends Tes_Controller {
 			}
 		}
 		// format it to JSON, this output will be displayed in datatable
-
+        
 		echo json_encode($output);
 	}
 
 	/**
-	* funsi tambahan
-	*
-	*
+	* funsi tambahan 
+	* 
+	* 
 */
-
+	
 	function get_start() {
 		$start = 0;
 		if (isset($_GET['iDisplayStart'])) {
@@ -498,102 +498,5 @@ class Tes_dashboard extends Tes_Controller {
 		}
 
 		return $sort_dir;
-	}
-	function get_materi(){
-		// variable initialization
-		$search = "";
-		$start = 0;
-		$rows = 10;
-
-		$group = $this->access_tes->get_group();
-		$query_grup = $this->cbt_user_grup_model->get_by_kolom_limit('grup_nama', $group, 1);
-		$grup_id = 0;
-		if($query_grup->num_rows()>0){
-			$grup_id = $query_grup->row()->grup_id;
-		}
-
-		$username = $this->access_tes->get_username();
-		$query_user = $this->cbt_user_model->get_by_kolom_limit('user_name', $username, 1);
-		$user_id = 0;
-		if($query_user->num_rows()>0){
-			$user_id = $query_user->row()->user_id;
-		}
-
-		// get search value (if any)
-		if (isset($_GET['sSearch']) && $_GET['sSearch'] != "" ) {
-			$search = $_GET['sSearch'];
-		}
-
-		// limit
-		$start = $this->get_start();
-		$rows = $this->get_rows();
-
-		// run query to get user listing
-		$query = $this->cbt_tesgrup_model->get_datatable($start, $rows, $grup_id);
-		$iFilteredTotal = $query->num_rows();
-
-		$iTotal= $this->cbt_tesgrup_model->get_datatable_count($grup_id)->row()->hasil;
-
-		$output = array(
-			"sEcho" => intval($_GET['sEcho']),
-	        "iTotalRecords" => $iTotal,
-	        "iTotalDisplayRecords" => $iTotal,
-	        "aaData" => array()
-	    );
-
-	    // get result after running query and put it in array
-		$i=$start;
-		$query = $query->result();
-	    foreach ($query as $temp) {
-			$record = array();
-
-			// Cek apakah tes yang terdaftar pada group memiliki soal sesuai topik yang ada
-			if($this->cbt_tes_topik_set_model->count_by_kolom('tset_tes_id', $temp->tes_id)->row()->hasil>0){
-				$record[] = ++$i;
-	            $record[] = $temp->tes_nama;
-	            $record[] = $temp->tes_begin_time;
-	            $record[] = $temp->tes_end_time;
-
-	            // Cek apakah sudah mengikuti tes tetapi belum selesai
-	            if($this->cbt_tes_user_model->count_by_user_tes($user_id, $temp->tes_id)->row()->hasil>0){
-	            	// Cek apakah sudah selesai atau belum, jika blum selesai maka tes bisa dilanjutkan
-	            	$tanggal = new DateTime();
-	            	$query_test_user = $this->cbt_tes_user_model->get_by_user_tes($user_id, $temp->tes_id)->row();
-	            	$tanggal_tes = new DateTime($query_test_user->tesuser_creation_time);
-	            	$tanggal_tes->modify('+'.$temp->tes_duration_time.' minutes');
-
-	            	if($tanggal<$tanggal_tes AND $query_test_user->tesuser_status!=4){
-	            		// nilai kosong karena masih dalam pengerjaan
-	            		$record[] = '';
-	            		// Jika masih dalam waktu pengerjaan, maka tes dilanjutkan
-	            		$record[] = '<a href="'.site_url().'/tes_kerjakan/index/'.$temp->tes_id.'" style="cursor: pointer;" class="btn btn-default btn-xs">Lanjutkan</a>';
-	            	}else{
-	            		// menampilkan nilai
-	            		// Cek apakah tes yang selesai ditampilkan nilainya
-		            	if($temp->tes_results_to_users==1){
-		            		$record[] = $this->cbt_tes_soal_model->get_nilai($query_test_user->tesuser_id)->row()->hasil;
-		            	}else{
-		            		$record[] = '';
-		            	}
-
-	            		// mengecek apakah detail tes ditampilkan
-	            		if($temp->tes_detail_to_users==1){
-	            			$record[] = '<a href="'.site_url().'/tes_hasil_detail/index/'.$query_test_user->tesuser_id.'" style="cursor: pointer;" class="btn btn-default btn-xs">Lihat Detail</a>';
-	            		}else{
-	            			$record[] = '';
-	            		}
-	            	}
-	            }else{
-	            	$record[] = '';
-	            	$record[] = '<a href="'.site_url().'/'.$this->url.'/konfirmasi_test/'.$temp->tes_id.'" style="cursor: pointer;" class="btn btn-success btn-xs">Kerjakan</a>';
-	            }
-
-				$output['aaData'][] = $record;
-			}
-		}
-		// format it to JSON, this output will be displayed in datatable
-
-		echo json_encode($output);
-
 	}
 }
