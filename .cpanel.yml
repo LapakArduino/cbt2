@@ -1,13 +1,20 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/kangekom/laravel/
-    -/bin/cp -R .vscode $DEPLOYPATH
-    -/bin/cp -R assets $DEPLOYPATH
-    -/bin/cp -R css $DEPLOYPATH
-    -/bin/cp -R js $DEPLOYPATH
-    -/bin/cp -R img $DEPLOYPATH
-    -/bin/cp -R fonts $DEPLOYPATH
-    -/bin/cp no.ignore  $DEPLOYPATH
+    - export DEPLOYPATH=/home/username/laravel/
+    - /bin/git clone https://github.com/LapakArduino/cbt2.git $DEPLOYPATH
+    - /bin/git -C $DEPLOYPATH pull
+  app: laravel
+  hooks:
+    build: /usr/bin/echo "Build complete"
+    deploy: /usr/bin/echo "Deploy complete"
+    # - export DEPLOYPATH=/home/kangekom/laravel/
+    # -/bin/cp -R .vscode $DEPLOYPATH
+    # -/bin/cp -R assets $DEPLOYPATH
+    # -/bin/cp -R css $DEPLOYPATH
+    # -/bin/cp -R js $DEPLOYPATH
+    # -/bin/cp -R img $DEPLOYPATH
+    # -/bin/cp -R fonts $DEPLOYPATH
+    # -/bin/cp no.ignore  $DEPLOYPATH
 
-    /bin/cp index.php $DEPLOYPATH
+    # /bin/cp index.php $DEPLOYPATH
