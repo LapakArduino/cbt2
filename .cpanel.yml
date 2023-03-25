@@ -1,11 +1,13 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/kangekom/public-html/
+    - export DEPLOYPATH=/home/kangekom/cbt2_github/
     -/bin/cp -R .vscode $DEPLOYPATH
     -/bin/cp -R assets $DEPLOYPATH
     -/bin/cp -R css $DEPLOYPATH
     -/bin/cp -R js $DEPLOYPATH
     -/bin/cp -R img $DEPLOYPATH
     -/bin/cp -R fonts $DEPLOYPATH
-    /bin/cp index.html $DEPLOYPATH
+    # -/bin/cp -R  $DEPLOYPATH
+
+    /bin/cp index.php $DEPLOYPATH
