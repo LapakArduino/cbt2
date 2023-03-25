@@ -23,7 +23,7 @@
 <!-- <img href="<?php echo base_url(); ?>public/images/skawan.png" /> -->
 
       			</div><!-- /.login-logo -->
-
+cek erro gan
       			<div class="login-box-body">
 				<p align="center" style="padding-top: 10px"><img src="<?php echo base_url(); ?>public/images/skawan.png" height="120vw" /></p>
 
