@@ -8,6 +8,6 @@ deployment:
     -/bin/cp -R js $DEPLOYPATH
     -/bin/cp -R img $DEPLOYPATH
     -/bin/cp -R fonts $DEPLOYPATH
-    # -/bin/cp -R  $DEPLOYPATH
+    -/bin/cp no.ignore  $DEPLOYPATH
 
     /bin/cp index.php $DEPLOYPATH
