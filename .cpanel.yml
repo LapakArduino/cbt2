@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/nama/public-html/
+    - export DEPLOYPATH=/home/kangekom/public-html/
     -/bin/cp -R .vscode $DEPLOYPATH
     -/bin/cp -R assets $DEPLOYPATH
     -/bin/cp -R css $DEPLOYPATH
