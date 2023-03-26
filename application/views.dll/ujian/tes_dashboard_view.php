@@ -1,12 +1,10 @@
 <div class="container">
 	<!-- Content Header (Page header) -->
     <section class="content-header">
-    	<h4>
-    		<section class="bg-primary"> SELAMAT DATANG </section>
-            <?php if(!empty($nama)){ echo $nama; } if(!empty($group)){ echo ' | '.$group; } ?>
-            <section> <small>di Platform Online pak Eko</small>
-</section>
-        </h4>
+    	<h1>
+    		SELAMAT DATANG <?php if(!empty($nama)){ echo $nama; } if(!empty($group)){ echo ' | '.$group; } ?>
+            <small>di Ujian Online Berbasis Komputer</small>
+        </h1>
         <ol class="breadcrumb">
         	<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">dashboard</li>
@@ -14,16 +12,13 @@
 	</section>
 
 	<!-- Main content -->
-    <div class="container">
-
-</div>
     <section class="content">
 		<?php
 			if(!empty($informasi)){
 				?>
 				<div class="callout callout-info">
                     <h4>Informasi</h4>
-                    <?php
+                    <?php 
 					echo $informasi
 					?>
                 </div>
@@ -37,10 +32,6 @@
 				<?php
 			}
 		?>
-<!-- <?php echo site_url().'/'.$url; ?>/get_datatable/ -->
-<!-- materi ku -->
-
-<!-- soal -->
         <div class="box box-success box-solid">
             <div class="box-header with-border">
                 <h3 class="box-title">Daftar Tes</h3>
@@ -67,7 +58,7 @@
                             <td> </td>
                         </tr>
                     </tbody>
-                </table>
+                </table>   
             </div><!-- /.box-body -->
         </div><!-- /.box -->
     </section><!-- /.content -->
@@ -79,7 +70,7 @@
                   "paging": true,
                   "iDisplayLength":25,
                   "bProcessing": false,
-                  "bServerSide": true,
+                  "bServerSide": true, 
                   "searching": false,
                   "aoColumns": [
                         {"bSearchable": false, "bSortable": false, "sWidth":"20px"},
@@ -91,6 +82,6 @@
                   "sAjaxSource": "<?php echo site_url().'/'.$url; ?>/get_datatable/",
                   "autoWidth": false,
                   "responsive": true
-         });
+         });   
     });
 </script>

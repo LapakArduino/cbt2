@@ -1,12 +1,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
 	<h1>
-		Topik
-		<small>Daftar topik, penambahan topik, pengubahan topik, dan penghapusan topik berdasarkan Modul</small>
+		Peserta
+		<small>Daftar peserta, penambahan peserta, pengubahan data peserta, dan penghapusan data peserta</small>
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="<?php echo site_url(); ?>/"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Topik</li>
+		<li class="active">Peserta</li>
 	</ol>
 </section>
 
@@ -16,21 +16,22 @@
         <div class="col-md-3">
                 <div class="box">
                     <div class="box-header with-border">
-                        <div class="box-title">Pilih Modul</div>
+                        <div class="box-title">Pilih Group</div>
                     </div><!-- /.box-header -->
 
                     <div class="box-body">
                         <div class="form-group">
-                            <label>Modul</label>
+                            <label>Group</label>
                             <div id="data-kelas">
-                                <select name="modul" id="modul" class="form-control input-sm">
-                                    <?php if(!empty($select_modul)){ echo $select_modul; } ?>
+                                <select name="group" id="group" class="form-control input-sm">
+                                    <option value="semua">Semua Group</option>
+                                    <?php if(!empty($select_group)){ echo $select_group; } ?>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="box-footer">
-                        <p>Pilih modul terlebih dahulu untuk menampilkan dan menambah topik</p>
+                        <p>Pilih group terlebih dahulu untuk menampilkan dan menambah data Peserta</p>
                     </div>
                 </div>
         </div>
@@ -38,25 +39,25 @@
         <div class="col-md-9">
                 <div class="box">
                     <div class="box-header with-border">
-    						<div class="box-title">Daftar Topik</div>
+    						<div class="box-title">Daftar Peserta</div>
     						<div class="box-tools pull-right">
     							<div class="dropdown pull-right">
-    								<a style="cursor: pointer;" onclick="tambah()">Tambah Topik (Ujian)</a>
+    								<a style="cursor: pointer;" onclick="tambah()">Tambah Peserta</a>
     							</div>
     						</div>
                     </div><!-- /.box-header -->
 
                     <div class="box-body">
-                        <?php echo form_open($url.'/hapus_daftar_topik','id="form-hapus"'); ?>
+                        <?php echo form_open($url.'/hapus_daftar_siswa','id="form-hapus"'); ?>
                         <input type="hidden" name="check" id="check" value="0">
-                        <table id="table-topik" class="table table-bordered table-hover">
+                        <table id="table-peserta" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th class="all">Nama Topik</th>
-                                    <th>Deskripsi</th>
-                                    <th>Jml. Soal</th>
-                                    <th>Status</th>
+                                    <th>Username</th>
+                                    <th class="all">Nama</th>
+                                    <th>Kelompok</th>
+									<th>Keterangan</th>
                                     <th class="all">Action</th>
                                     <th class="all"></th>
                                 </tr>
@@ -65,15 +66,15 @@
                                 <tr>
                                     <td> </td>
                                     <td> </td>
-                                    <td> </td>
+									<td> </td>
                                     <td> </td>
 									<td> </td>
                                     <td> </td>
                                     <td> </td>
                                 </tr>
                             </tbody>
-                        </table>
-                        </form>
+                        </table>  
+                        </form>                      
                     </div>
                     <div class="box-footer">
                         <button type="button" id="btn-edit-hapus" class="btn btn-primary" title="Hapus Siswa yang dipilih">Hapus</button>
@@ -83,32 +84,74 @@
         </div>
     </div>
 
-    <div class="modal" id="modal-tambah" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div style="overflow-y:auto;" class="modal" id="modal-hapus" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal">&times;</button>
+                    <div id="trx-judul">Hapus Peserta</div>
+                </div>
+                <div class="modal-body">
+                    <div class="row-fluid">
+                        <div class="box-body">
+                            <strong>Peringatan</strong>
+                            Data Siswa yang sudah dipilih akan dihapus, Data Hasil Tes juga akan terhapus.
+                            <br /><br />
+                            Apakah anda yakin untuk menghapus data Siswa ?
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-hapus" class="btn btn-default pull-left">Hapus</button>
+                    <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="max-height: 100%;overflow-y:auto;" class="modal" id="modal-tambah" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <?php echo form_open($url.'/tambah','id="form-tambah"'); ?>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" type="button" data-dismiss="modal">&times;</button>
-                    <div id="trx-judul">Tambah Topik</div>
+                    <div id="trx-judul">Tambah Peserta</div>
                 </div>
                 <div class="modal-body">
                     <div class="row-fluid">
                         <div class="box-body">
                             <div id="form-pesan"></div>
                             <div class="form-group">
-                                <label>Nama Topik</label>
-                                <input type="hidden" name="tambah-modul-id" id="tambah-modul-id">
-                                <input type="text" class="form-control" id="tambah-topik" name="tambah-topik" placeholder="Nama Topik">
+                                <label>Username</label>
+                                <input type="text" class="form-control" id="tambah-username" name="tambah-username" placeholder="Username Peserta">
                             </div>
 
                             <div class="form-group">
-                                <label>Deskripsi</label>
-                                <input type="text" class="form-control" id="tambah-deskripsi" name="tambah-deskripsi" placeholder="Deskripsi Topik" >
+                                <label>Password</label>
+                                <input type="password" class="form-control" id="tambah-password" name="tambah-password" >
                             </div>
 
                             <div class="form-group">
-                                <label>Status</label>
-                                <input type="text" class="form-control" id="tambah-status" name="tambah-status" value="AKTIF" readonly>
+                                <label>Nama Lengkap</label>
+                                <input type="text" class="form-control" id="tambah-nama" name="tambah-nama" placeholder="Nama Lengkap Peserta">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" class="form-control" id="tambah-email" name="tambah-email" placeholder="Email Peserta (Boleh dikosongkan)">
+                            </div>
+							
+							<div class="form-group">
+                                <label>Keterangan</label>
+                                <input type="text" class="form-control" id="tambah-detail" name="tambah-detail" placeholder="Keterangan peserta. (Bisa disi ruang dan sesi)">
+								<p class="help-block">Dapat diisi Ruang dan Sesi Peserta. Contoh : Ruang 1, Sesi 1</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Group</label>
+                                <select name="tambah-group" id="tambah-group" class="form-control input-sm">
+                                    <?php if(!empty($select_group)){ echo $select_group; } ?>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -123,35 +166,58 @@
     </form>
     </div>
 
-    <div class="modal" id="modal-edit" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div style="max-height: 100%;overflow-y:auto;" class="modal" id="modal-edit" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="basicModalEdit" aria-hidden="true">
     <?php echo form_open($url.'/edit','id="form-edit"'); ?>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" type="button" data-dismiss="modal">&times;</button>
-                    <div id="trx-judul">Edit Topik</div>
+                    <div id="trx-judul">Edit Peserta</div>
                 </div>
                 <div class="modal-body">
                     <div class="row-fluid">
                         <div class="box-body">
                             <div id="form-pesan-edit"></div>
                             <div class="form-group">
-                                <label>Nama Topik</label>
+                                <label>Username</label>
                                 <input type="hidden" name="edit-id" id="edit-id">
-								<input type="hidden" name="edit-modul-id" id="edit-modul-id">
                                 <input type="hidden" name="edit-pilihan" id="edit-pilihan">
-                                <input type="hidden" name="edit-topik-asli" id="edit-topik-asli">
-                                <input type="text" class="form-control" id="edit-topik" name="edit-topik" placeholder="Nama Topik">
+                                <input type="text" class="form-control" id="edit-username" name="edit-username" readonly >
                             </div>
+
                             <div class="form-group">
-                                <label>Deskripsi</label>
-                                <input type="text" class="form-control" id="edit-deskripsi" name="edit-deskripsi" placeholder="Deskripsi Topik" >
+                                <label>Password</label>
+								<div class="input-group">
+									<input type="password" id="edit-password" name="edit-password" class="form-control">
+									<span class="input-group-btn">
+										<button class="btn btn-flat" id="btn-show-password" title="Tampilkan Password" type="button"><i id="icon-show-password" class="fa fa-eye"></i></button>
+									</span>
+								</div>
                             </div>
+
                             <div class="form-group">
-                                <label>Status</label>
-                                <input type="text" class="form-control" id="edit-status" name="edit-status" value="AKTIF" readonly>
+                                <label>Nama Lengkap</label>
+                                <input type="text" class="form-control" id="edit-nama" name="edit-nama" placeholder="Nama Lengkap Peserta">
                             </div>
-                            <p>NB : Topik yang dihapus, maka semua bank soal akan ikut terhapus !</p>
+
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" class="form-control" id="edit-email" name="edit-email" placeholder="Email Peserta (Boleh dikosongkan)">
+                            </div>
+							
+							<div class="form-group">
+                                <label>Keterangan</label>
+                                <input type="text" class="form-control" id="edit-detail" name="edit-detail" placeholder="Keterangan peserta. (Bisa disi ruang dan sesi)">
+								<p class="help-block">Dapat diisi Ruang dan Sesi Peserta. Contoh : Ruang 1, Sesi 1</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Group</label>
+                                <select name="edit-group" id="edit-group" class="form-control input-sm">
+                                    <?php if(!empty($select_group)){ echo $select_group; } ?>
+                                </select>
+                            </div>
+                            <p>NB : Peserta yang dihapus, maka semua hasil tes akan ikut terhapus !</p>
                         </div>
                     </div>
                 </div>
@@ -165,48 +231,38 @@
 
     </form>
     </div>
-
-    <div class="modal" id="modal-hapus" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" type="button" data-dismiss="modal">&times;</button>
-                    <div id="trx-judul">Hapus Topik</div>
-                </div>
-                <div class="modal-body">
-                    <div class="row-fluid">
-                        <div class="box-body">
-                            <strong>Peringatan</strong>
-                            Data Topik yang sudah dipilih akan dihapus beserta isi soal didalamnya.
-                            <br /><br />
-                            Apakah anda yakin untuk menghapus data Topik ?
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="btn-hapus" class="btn btn-default pull-left">Hapus</button>
-                    <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
-                </div>
-            </div>
-        </div>
-    </div>
 </section><!-- /.content -->
 
 
 
 <script lang="javascript">
     function refresh_table(){
-        $('#table-topik').dataTable().fnReloadAjax();
+        $('#table-peserta').dataTable().fnReloadAjax();
+    }
+	
+	function showpassword(){
+		var x = document.getElementById("edit-password");
+		if (x.type === "password") {
+			x.type = "text";
+			$("#icon-show-password").removeClass("fa-eye");
+			$("#icon-show-password").addClass("fa-eye-slash");
+		} else {
+			x.type = "password";
+			$("#icon-show-password").removeClass("fa-eye-slash");
+			$("#icon-show-password").addClass("fa-eye");
+		}
     }
 
     function tambah(){
         $('#form-pesan').html('');
-        $('#tambah-topik').val('');
-        $('#tambah-modul-id').val('');
-        $('#tambah-deskripsi').val('');
+        $('#tambah-username').val('');
+        $('#tambah-password').val('');
+        $('#tambah-nama').val('');
+        $('#tambah-email').val('');
+		$('#tambah-detail').val('');
 
         $("#modal-tambah").modal("show");
-        $('#tambah-topik').focus();
+        $('#tambah-username').focus();
     }
 
     function edit(id){
@@ -214,11 +270,13 @@
         $.getJSON('<?php echo site_url().'/'.$url; ?>/get_by_id/'+id+'', function(data){
             if(data.data==1){
                 $('#edit-id').val(data.id);
-                $('#edit-topik').val(data.topik);
-                $('#edit-topik-asli').val(data.topik);
-                $('#edit-deskripsi').val(data.deskripsi);
-				$('#edit-modul-id').val('');
-
+                $('#edit-username').val(data.username);
+                $('#edit-password').val(data.password);
+                $('#edit-nama').val(data.nama);
+                $('#edit-email').val(data.email);
+				$('#edit-detail').val(data.detail);
+                $('#edit-group').val(data.group);
+                
                 $("#modal-edit").modal("show");
             }
             $("#modal-proses").modal('hide');
@@ -226,6 +284,22 @@
     }
 
     $(function(){
+		$("#btn-show-password").click(function(){
+			showpassword();
+		});
+		
+        $("#group").change(function(){
+            refresh_table();
+        });
+
+        $('#edit-simpan').click(function(){
+            $('#edit-pilihan').val('simpan');
+            $('#form-edit').submit();
+        });
+        $('#edit-hapus').click(function(){
+            $('#edit-pilihan').val('hapus');
+            $('#form-edit').submit();
+        });
         $('#btn-edit-pilih').click(function(event) {
             if($('#check').val()==0) {
                 $(':checkbox').each(function() {
@@ -239,19 +313,6 @@
                 $('#check').val('0');
             }
         });
-
-        $("#modul").change(function(){
-            refresh_table();
-        });
-
-        $('#edit-simpan').click(function(){
-            $('#edit-pilihan').val('simpan');
-            $('#form-edit').submit();
-        });
-        $('#edit-hapus').click(function(){
-            $('#edit-pilihan').val('hapus');
-            $('#form-edit').submit();
-        });
         $('#btn-edit-hapus').click(function(){
             $("#modal-hapus").modal('show');
         });
@@ -262,7 +323,7 @@
         $('#form-hapus').submit(function(){
             $("#modal-proses").modal('show');
             $.ajax({
-                    url:"<?php echo site_url().'/'.$url; ?>/hapus_daftar_topik",
+                    url:"<?php echo site_url().'/'.$url; ?>/hapus_daftar_siswa",
                     type:"POST",
                     data:$('#form-hapus').serialize(),
                     cache: false,
@@ -284,7 +345,6 @@
         });
 
         $('#form-edit').submit(function(){
-			$('#edit-modul-id').val($('#modul').val());
             $("#modal-proses").modal('show');
             $.ajax({
                     url:"<?php echo site_url().'/'.$url; ?>/edit",
@@ -308,7 +368,6 @@
         });
 
         $('#form-tambah').submit(function(){
-            $('#tambah-modul-id').val($('#modul').val());
             $("#modal-proses").modal('show');
             $.ajax({
                     url:"<?php echo site_url().'/'.$url; ?>/tambah",
@@ -331,26 +390,26 @@
             return false;
         });
 
-        $('#table-topik').DataTable({
+        $('#table-peserta').DataTable({
                   "paging": true,
                   "iDisplayLength":10,
                   "bProcessing": false,
-                  "bServerSide": true,
+                  "bServerSide": true, 
                   "searching": true,
                   "aoColumns": [
     					{"bSearchable": false, "bSortable": false, "sWidth":"20px"},
     					{"bSearchable": false, "bSortable": false},
                         {"bSearchable": false, "bSortable": false},
-                        {"bSearchable": false, "bSortable": false},
-    					{"bSearchable": false, "bSortable": false},
+    					{"bSearchable": false, "bSortable": false, "sWidth":"80px"},
+						{"bSearchable": false, "bSortable": false},
                         {"bSearchable": false, "bSortable": false, "sWidth":"30px"},
-                        {"bSearchable": false, "bSortable": false, "sWidth":"30px"}],
+                        {"bSearchable": false, "bSortable": false, "sWidth":"20px"}],
                   "sAjaxSource": "<?php echo site_url().'/'.$url; ?>/get_datatable/",
                   "autoWidth": false,
                   "responsive": true,
                   "fnServerParams": function ( aoData ) {
-                    aoData.push( { "name": "modul", "value": $('#modul').val()} );
+                    aoData.push( { "name": "group", "value": $('#group').val()} );
                   }
-         });
+         });          
     });
 </script>

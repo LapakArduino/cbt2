@@ -17,36 +17,31 @@
     	<?php echo form_open('welcome/login','id="form-login" class="form-horizontal"')?>
     	</div>
     	<div class="row">
-    		<div class="login-box ">
-    <!-- <p class="login-box-msg">Rex-CBT</p> -->
+    		<div class="login-box">
     			<div class="login-logo">
-<!-- <img href="<?php echo base_url(); ?>public/images/skawan.png" /> -->
-
+        			<b>User Login</b>
       			</div><!-- /.login-logo -->
-cek erro gan
       			<div class="login-box-body">
-				<p align="center" style="padding-top: 10px"><img src="<?php echo base_url(); ?>public/images/skawan.png" height="120vw" /></p>
-
         			<p class="login-box-msg">Masukkan Username dan Password</p>
                 <div id="form-pesan"></div>
-          			<div class="mb-2 form-group has-feedback">
+          			<div class="form-group has-feedback">
             			<input type="text" id="username" autocomplete="off" name="username" class="form-control" placeholder="Username"/>
             			<span class="glyphicon glyphicon-user form-control-feedback"></span>
           			</div>
-          		<div class="mb-2 form-group has-feedback">
+          		<div class="form-group has-feedback">
             		<input type="password" id="password" autocomplete="off" name="password" class="form-control" placeholder="Password"/>
             		<span class="glyphicon glyphicon-lock form-control-feedback"></span>
           		</div>
           		<div class="row">
-		            <div class="col-xs-8">
-                  <div class="py-2 checkbox icheck">
+		            <div class="col-xs-8">                          
+                  <div class="checkbox icheck">
                     <label>
-                      <input type="checkbox" id="show-password"> Tampilkan sandi
+                      <input type="checkbox" id="show-password"> Show Password
                     </label>
-                  </div>
+                  </div>    
 		            </div><!-- /.col -->
 		            <div class="col-xs-4">
-		              	<button type="submit" class="btn btn-primary btn-block btn-flat">Masuk</button>
+		              	<button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
 		            </div><!-- /.col -->
 	          	</div>
     		</div><!-- /.login-box -->
@@ -64,18 +59,18 @@ cek erro gan
       }
     }
     $(function () {
-        $('#username').focus();
+        $('#username').focus(); 
 
         $('#show-password').iCheck({
           checkboxClass: 'icheckbox_square-blue',
           radioClass: 'iradio_square-blue',
           increaseArea: '20%' // optional
-        });
+        });  
 
         $('#show-password').on('ifChanged', function(event){
           showpassword();
         });
-
+        
         $('#form-login').submit(function(){
           $("#modal-proses").modal('show');
             $.ajax({
@@ -90,12 +85,12 @@ cek erro gan
           		        }else{
                             $('#form-pesan').html(pesan_err(obj.error));
                             $("#modal-proses").modal('hide');
-                            $('#username').focus();
+                            $('#username').focus();   
           		        }
          			}
       		});
-
+            
       		return false;
-        });
+        });    
     });
 </script>

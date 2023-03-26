@@ -76,7 +76,7 @@
                                 <p>Apakah anda yakin mengakhiri mata uji ini ?
 								<br />Jawaban Tes yang sudah selesai tidak dapat diubah.
 								</p>
-
+								
                             </div>
                             <div class="form-group">
                                 <label>Nama Tes</label>
@@ -276,7 +276,7 @@
                 });
             }
         }
-
+        
         if(audio_player_status==0){
             $('#audio-player-status').val('1');
             $('#audio-player').trigger('play');
@@ -433,7 +433,7 @@
         });
 
         $( document ).ready(function() {
-
+            
         });
     });
 </script>
