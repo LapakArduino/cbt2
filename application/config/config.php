@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['upload_path'] = 'uploads';
 $config['site_name'] = 'Computer Based-Test';
 $config['site_version'] = '2020.10.31';
+$config['pak_eko']='ini quotes';
 
 /*
 |--------------------------------------------------------------------------

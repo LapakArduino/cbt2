@@ -76,15 +76,15 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 
-	// 'hostname' => 'localhost',
-	// 'username' => 'root',
-	// 'password' => '',
-	// 'database' => 'zyacbt',
-
 	'hostname' => 'localhost',
-	'username' => 'kangekom_eko',
-	'password' => '=]g)ioY5H9ws',
-	'database' => 'kangekom_laravel',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'zyacbt',
+
+	// 'hostname' => 'localhost',
+	// 'username' => 'kangekom_eko',
+	// 'password' => '=]g)ioY5H9ws',
+	// 'database' => 'kangekom_laravel',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
