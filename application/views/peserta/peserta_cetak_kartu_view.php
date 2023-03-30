@@ -26,7 +26,7 @@
 		text-align: center;
 		font-weight: bold;
 		font-size: 1.1em;
-		background-color: red;
+		background-color: #00897B;
 
 	}
 	.pakeko{

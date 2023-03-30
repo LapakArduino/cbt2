@@ -3,6 +3,6 @@
 /petunjuk update
 /zya.zip
 /zya
-/application.old
-/application/config/database.php
-/application/config/database.php.bak
+application.old
+application/config/database.php
+application/config/database.php.bak
