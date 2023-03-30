@@ -81,7 +81,7 @@ $db['default'] = array(
 	// 'password' => '',
 	// 'database' => 'zyacbt',
 
-	'hostname' => 'localhost3',
+	'hostname' => 'localhost',
 	'username' => 'kangekom_eko',
 	'password' => '=]g)ioY5H9ws',
 	'database' => 'kangekom_laravel',
