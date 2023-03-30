@@ -4,7 +4,7 @@ class Peserta_kartu extends Member_Controller {
 	private $kode_menu = 'peserta-kartu';
 	private $kelompok = 'peserta';
 	private $url = 'manager/peserta_kartu';
-	
+
     function __construct(){
 		parent:: __construct();
 		$this->load->model('cbt_user_grup_model');
@@ -13,11 +13,11 @@ class Peserta_kartu extends Member_Controller {
 
         parent::cek_akses($this->kode_menu);
 	}
-	
+
     public function index(){
 		$data['kode_menu'] = $this->kode_menu;
         $data['url'] = $this->url;
-		
+
 		$query_group = $this->cbt_user_grup_model->get_group();
 
         if($query_group->num_rows()>0){
@@ -31,7 +31,7 @@ class Peserta_kartu extends Member_Controller {
         	$select = '<option value="0">KOSONG</option>';
         }
         $data['select_group'] = $select;
-		
+
         $this->template->display_admin($this->kelompok.'/peserta_kartu_view', 'Cetak Kartu Peserta', $data);
     }
 
@@ -40,30 +40,34 @@ class Peserta_kartu extends Member_Controller {
 	*/
     public function cetak_kartu($grup_id=null){
 		$data['kode_menu'] = $this->kode_menu;
-		
+		$gambar = '<p align="center" style="padding-top: 10px"><img src="/skawan.png" height="40vw" /></p>';
+		$line = '<?php echo base_url(); ?>';
+
 		$kartu = '<h3>Data Peserta Kosong</h3>';
 		if(!empty($grup_id)){
 			$query_user = $this->cbt_user_model->get_by_kolom('user_grup_id', $grup_id);
 			if($query_user->num_rows()>0){
 				$kartu = '';
 				$query_user = $query_user->result();
-				
+
 				$query_konfig = $this->cbt_konfigurasi_model->get_by_kolom_limit('konfigurasi_kode', 'cbt_nama', 1);
 				$cbt_nama = 'Computer Based-Test';
+				$cbt_nama2 = 'Pak Eko CBT';
 				if($query_konfig->num_rows()>0){
 					$cbt_nama = $query_konfig->row()->konfigurasi_isi;
 				}
-				
+
 				$query_group = $this->cbt_user_grup_model->get_by_kolom_limit('grup_id', $grup_id, 1);
 				$group = 'NULL';
 				if($query_group->num_rows()>0){
 					$group = $query_group->row()->grup_nama;
 				}
-				
+
 				foreach($query_user AS $temp){
 					$kartu = $kartu.'
 						<div class="kartu">
-							<div class="header">'.$cbt_nama.'</div>
+							<div class="header">'.$cbt_nama2.'</div>
+							<div class="pakeko">customized by Pak Eko</div>
 							<hr />
 							<table>
 								<tr>
@@ -82,7 +86,7 @@ class Peserta_kartu extends Member_Controller {
 									<td>'.$temp->user_password.'</td>
 								</tr>
 								<tr>
-									<td>Grup</td>
+									<td>Kelas</td>
 									<td>:</td>
 									<td>'.$group.'</td>
 								</tr>
@@ -97,9 +101,9 @@ class Peserta_kartu extends Member_Controller {
 				}
 			}
 		}
-		
+
 		$data['kartu'] = $kartu;
-		
+
 		$this->load->view($this->kelompok.'/peserta_cetak_kartu_view', $data);
 	}
 }
