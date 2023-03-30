@@ -95,6 +95,11 @@ class Peserta_kartu extends Member_Controller {
 									<td>:</td>
 									<td>'.$temp->user_detail.'</td>
 								</tr>
+								<tr>
+									<td>Link CBT</td>
+									<td>:</td>
+									<td>cbt2.kangeko.my.id</td>
+								</tr>
 							</table>
 						</div>
 					';

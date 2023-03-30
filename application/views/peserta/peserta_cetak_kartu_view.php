@@ -11,6 +11,7 @@
 		padding: 2px;
 		font-size: 0.75em;
 		color: #000 !important;
+		/* background-color: #00897B; */
 		font-family: Verdana, Arial, sans-serif;
 	}
 
@@ -26,7 +27,7 @@
 		text-align: center;
 		font-weight: bold;
 		font-size: 1.1em;
-		background-color: #00897B;
+
 
 	}
 	.pakeko{
