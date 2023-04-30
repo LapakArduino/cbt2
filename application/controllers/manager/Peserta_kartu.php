@@ -67,7 +67,6 @@ class Peserta_kartu extends Member_Controller {
 					$kartu = $kartu.'
 						<div class="kartu">
 							<div class="header">'.$cbt_nama2.'</div>
-							<div class="pakeko">customized by Pak Eko</div>
 							<hr />
 							<table>
 								<tr>
@@ -89,11 +88,6 @@ class Peserta_kartu extends Member_Controller {
 									<td>Kelas</td>
 									<td>:</td>
 									<td>'.$group.'</td>
-								</tr>
-								<tr>
-									<td>Keterangan</td>
-									<td>:</td>
-									<td>'.$temp->user_detail.'</td>
 								</tr>
 								<tr>
 									<td>Link CBT</td>
