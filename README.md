@@ -9,5 +9,6 @@ message : "Pengambilan data berhasil",
 data:{
     dummy: "dummy",
     DUmmy2 : "dummy2",
-}}
+}
+}
 ``` 
